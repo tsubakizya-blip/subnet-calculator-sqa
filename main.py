@@ -104,8 +104,48 @@ def hitung_subnet(ip: str, prefix: int) -> dict[str, Any]:
 
 
 def alokasi_vlsm(network_cidr: str, kebutuhan_host: list[int]) -> list[dict]:
-    raise NotImplementedError("alokasi_vlsm belum diimplementasikan")
+    # 1. Validasi network dasar: harus CIDR dan harus alamat network
+    if not isinstance(network_cidr, str) or network_cidr.count("/") != 1:
+        raise ValueError("Network harus berformat CIDR, misalnya 192.168.1.0/24.")
+    ip_str, prefix_str = network_cidr.split("/")
+    if not (prefix_str.isascii() and prefix_str.isdigit()):
+        raise ValueError("Prefix network harus berupa bilangan bulat 0-32.")
+    prefix = int(prefix_str)
+    dasar = hitung_subnet(ip_str, prefix)  # ValueError bila IP atau prefix tidak valid
+    if dasar["network"] != ip_str:
+        raise ValueError(
+            f"{ip_str}/{prefix} bukan alamat network yang valid "
+            f"(bit host harus nol, seharusnya {dasar['network']}/{prefix})."
+        )
 
+    # 2. Validasi daftar kebutuhan
+    if not isinstance(kebutuhan_host, list) or len(kebutuhan_host) == 0:
+        raise ValueError("Daftar kebutuhan host tidak boleh kosong.")
+    for k in kebutuhan_host:
+        if isinstance(k, bool) or not isinstance(k, int) or k < 1:
+            raise ValueError("Setiap kebutuhan host harus bilangan bulat >= 1.")
+
+    # 3. Alokasi: kebutuhan terbesar dulu, berurutan dari alamat network
+    a, b, c, d = (int(o) for o in dasar["network"].split("."))
+    awal = (a << 24) | (b << 16) | (c << 8) | d
+    kapasitas = 1 << (32 - prefix)
+    offset = 0
+    hasil = []
+    for k in sorted(kebutuhan_host, reverse=True):
+        ukuran = 4  # blok minimum /30
+        while ukuran < k + 2:  # pangkat 2 terkecil >= kebutuhan + 2
+            ukuran *= 2
+        if offset + ukuran > kapasitas:
+            raise ValueError(
+                "Kapasitas base network tidak mencukupi untuk menampung seluruh kebutuhan host."
+            )
+        prefix_blok = 32 - (ukuran.bit_length() - 1)
+        subnet = hitung_subnet(_int_to_ip(awal + offset), prefix_blok)
+        hasil.append(
+            {"kebutuhan": k, "network_cidr": f"{subnet['network']}/{prefix_blok}", **subnet}
+        )
+        offset += ukuran
+    return hasil
 
 # ---------------------------------------------------------------------------
 # Exception Handlers: Override 422 ke 400 Bad Request
@@ -182,4 +222,7 @@ class VlsmRequest(BaseModel):
 
 @app.post("/api/vlsm")
 def api_vlsm(body: VlsmRequest):
-    raise NotImplementedError("api_vlsm belum diimplementasikan")
+    try:
+        return alokasi_vlsm(body.network, body.kebutuhan_host)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
