@@ -358,7 +358,7 @@
 </button>
 </div>
 </div>
-<!-- VLSM: SUCCESS STATE TABLE -->
+<!-- VLSM: SUCCESS STATE TABLE (isi tabel diisi oleh JavaScript dari hasil API) -->
 <div class="bg-white rounded-2xl border border-gray-200/80 shadow-google overflow-hidden" id="vlsm-view-success">
 <div class="px-5 sm:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
 <div class="flex items-center gap-2">
@@ -384,104 +384,7 @@
 <th class="py-3 px-4 w-32">Broadcast</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-gray-100 text-xs" id="vlsm-res-tbody">
-<!-- Subnet 1 -->
-<tr class="hover:bg-gray-50/80 transition-colors">
-<td class="py-3.5 px-4 font-semibold text-gray-900 whitespace-nowrap">
-<span class="inline-flex items-center gap-1.5 font-medium px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-xs">
-<span class="w-1.5 h-1.5 rounded-full bg-google-blue"></span>
-                    Subnet 1
-                  </span>
-</td>
-<td class="py-3.5 px-3 text-right font-mono text-gray-600 whitespace-nowrap">60</td>
-<td class="py-3.5 px-3 text-right whitespace-nowrap">
-<span class="inline-block px-2 py-0.5 rounded font-mono font-bold text-google-blue bg-google-subtle">
-                    62 hosts
-                  </span>
-</td>
-<td class="py-3.5 px-2 text-center whitespace-nowrap">
-<span class="inline-block px-1.5 py-0.5 rounded font-mono font-bold text-white bg-google-blue text-[11px]">
-                    /26
-                  </span>
-</td>
-<td class="py-3.5 px-3 font-mono text-gray-600 whitespace-nowrap">255.255.255.192</td>
-<td class="py-3.5 px-3 font-mono font-semibold text-gray-900 whitespace-nowrap">192.168.1.0</td>
-<td class="py-3.5 px-3 font-mono text-gray-700 whitespace-nowrap">192.168.1.1 - 192.168.1.62</td>
-<td class="py-3.5 px-4 font-mono text-gray-500 whitespace-nowrap">192.168.1.63</td>
-</tr>
-<!-- Subnet 2 -->
-<tr class="hover:bg-gray-50/80 transition-colors">
-<td class="py-3.5 px-4 font-semibold text-gray-900 whitespace-nowrap">
-<span class="inline-flex items-center gap-1.5 font-medium px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-xs">
-<span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
-                    Subnet 2
-                  </span>
-</td>
-<td class="py-3.5 px-3 text-right font-mono text-gray-600 whitespace-nowrap">25</td>
-<td class="py-3.5 px-3 text-right whitespace-nowrap">
-<span class="inline-block px-2 py-0.5 rounded font-mono font-bold text-google-blue bg-google-subtle">
-                    30 hosts
-                  </span>
-</td>
-<td class="py-3.5 px-2 text-center whitespace-nowrap">
-<span class="inline-block px-1.5 py-0.5 rounded font-mono font-bold text-white bg-google-blue text-[11px]">
-                    /27
-                  </span>
-</td>
-<td class="py-3.5 px-3 font-mono text-gray-600 whitespace-nowrap">255.255.255.224</td>
-<td class="py-3.5 px-3 font-mono font-semibold text-gray-900 whitespace-nowrap">192.168.1.64</td>
-<td class="py-3.5 px-3 font-mono text-gray-700 whitespace-nowrap">192.168.1.65 - 192.168.1.94</td>
-<td class="py-3.5 px-4 font-mono text-gray-500 whitespace-nowrap">192.168.1.95</td>
-</tr>
-<!-- Subnet 3 -->
-<tr class="hover:bg-gray-50/80 transition-colors">
-<td class="py-3.5 px-4 font-semibold text-gray-900 whitespace-nowrap">
-<span class="inline-flex items-center gap-1.5 font-medium px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-xs">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    Subnet 3
-                  </span>
-</td>
-<td class="py-3.5 px-3 text-right font-mono text-gray-600 whitespace-nowrap">12</td>
-<td class="py-3.5 px-3 text-right whitespace-nowrap">
-<span class="inline-block px-2 py-0.5 rounded font-mono font-bold text-google-blue bg-google-subtle">
-                    14 hosts
-                  </span>
-</td>
-<td class="py-3.5 px-2 text-center whitespace-nowrap">
-<span class="inline-block px-1.5 py-0.5 rounded font-mono font-bold text-white bg-google-blue text-[11px]">
-                    /28
-                  </span>
-</td>
-<td class="py-3.5 px-3 font-mono text-gray-600 whitespace-nowrap">255.255.255.240</td>
-<td class="py-3.5 px-3 font-mono font-semibold text-gray-900 whitespace-nowrap">192.168.1.96</td>
-<td class="py-3.5 px-3 font-mono text-gray-700 whitespace-nowrap">192.168.1.97 - 192.168.1.110</td>
-<td class="py-3.5 px-4 font-mono text-gray-500 whitespace-nowrap">192.168.1.111</td>
-</tr>
-<!-- Subnet 4 -->
-<tr class="hover:bg-gray-50/80 transition-colors">
-<td class="py-3.5 px-4 font-semibold text-gray-900 whitespace-nowrap">
-<span class="inline-flex items-center gap-1.5 font-medium px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-xs">
-<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                    Subnet 4
-                  </span>
-</td>
-<td class="py-3.5 px-3 text-right font-mono text-gray-600 whitespace-nowrap">2</td>
-<td class="py-3.5 px-3 text-right whitespace-nowrap">
-<span class="inline-block px-2 py-0.5 rounded font-mono font-bold text-google-blue bg-google-subtle">
-                    2 hosts
-                  </span>
-</td>
-<td class="py-3.5 px-2 text-center whitespace-nowrap">
-<span class="inline-block px-1.5 py-0.5 rounded font-mono font-bold text-white bg-google-blue text-[11px]">
-                    /30
-                  </span>
-</td>
-<td class="py-3.5 px-3 font-mono text-gray-600 whitespace-nowrap">255.255.255.252</td>
-<td class="py-3.5 px-3 font-mono font-semibold text-gray-900 whitespace-nowrap">192.168.1.112</td>
-<td class="py-3.5 px-3 font-mono text-gray-700 whitespace-nowrap">192.168.1.113 - 192.168.1.114</td>
-<td class="py-3.5 px-4 font-mono text-gray-500 whitespace-nowrap">192.168.1.115</td>
-</tr>
-</tbody>
+<tbody class="divide-y divide-gray-100 text-xs" id="vlsm-res-tbody"></tbody>
 </table>
 </div>
 </div>
@@ -506,10 +409,7 @@
 <div>
 <h3 class="text-sm font-bold text-red-900">VLSM Allocation Error</h3>
 <p class="text-sm text-red-700 mt-0.5 font-medium" id="vlsm-error-detail">
-              Total requested host capacity (340) exceeds available /24 address space (254 usable hosts).
-            </p>
-<p class="text-xs text-red-600 mt-2">
-              Suggestion: Use a larger base block like <code class="font-mono bg-red-50 px-1 py-0.5 rounded">/23 (510 hosts)</code> or reduce allocated subnet sizes.
+              The VLSM allocation could not be processed.
             </p>
 </div>
 </div>
@@ -568,7 +468,7 @@
       sSuccess.classList.toggle('hidden', state !== 'success');
       sEmpty.classList.toggle('hidden', state !== 'empty');
       sError.classList.toggle('hidden', state !== 'error');
-      updateStateDemoButtons(state);
+      if (currentTab === 'subnet') updateStateDemoButtons(state);
     }
 
     function showVlsmState(state) {
@@ -579,7 +479,7 @@
       vSuccess.classList.toggle('hidden', state !== 'success');
       vEmpty.classList.toggle('hidden', state !== 'empty');
       vError.classList.toggle('hidden', state !== 'error');
-      updateStateDemoButtons(state);
+      if (currentTab === 'vlsm') updateStateDemoButtons(state);
     }
 
     function setViewMode(state) {
@@ -590,7 +490,7 @@
           onSubnetCalculateClick();
         } else {
           document.getElementById('vlsm-cidr').value = '192.168.1.5/24';
-          // Tab VLSM hanya tampilan — tidak ada logika error.
+          onVlsmCalculateClick();
         }
       } else if (state === 'empty') {
         if (currentTab === 'subnet') {
@@ -608,7 +508,7 @@
           onSubnetCalculateClick();
         } else {
           document.getElementById('vlsm-cidr').value = '192.168.1.0/24';
-          // Tab VLSM hanya tampilan — tidak ada logika success.
+          onVlsmCalculateClick();
         }
       }
     }
@@ -667,8 +567,59 @@
       }
     }
 
-    function onVlsmCalculateClick() {
-      // Tab VLSM hanya tampilan — tidak terhubung ke API.
+    // Mengamankan teks dari server sebelum dimasukkan ke HTML tabel
+    function escHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+      ));
+    }
+
+    // Tab VLSM: kirim CIDR dan daftar kebutuhan ke POST /api/vlsm
+    async function onVlsmCalculateClick() {
+      const cidr = document.getElementById('vlsm-cidr').value.trim();
+      const hosts = Array.from(document.querySelectorAll('#vlsm-req-container .vlsm-hosts'))
+        .map(el => (el.value.trim() === '' ? 0 : Number(el.value)));
+
+      if (!cidr && hosts.every(h => h === 0)) {
+        showVlsmState('empty');
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/vlsm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ network: cidr, kebutuhan_host: hosts })
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          document.getElementById('vlsm-res-base').textContent = `Base: ${cidr}`;
+          document.getElementById('vlsm-res-tbody').innerHTML = data.map((r, i) => {
+            const p = r.network_cidr.split('/')[1];
+            return `<tr class="hover:bg-gray-50/80 transition-colors">
+              <td class="py-3.5 px-4 font-semibold text-gray-900 whitespace-nowrap">Subnet ${i + 1}</td>
+              <td class="py-3.5 px-3 text-right font-mono text-gray-600 whitespace-nowrap">${escHtml(r.kebutuhan)}</td>
+              <td class="py-3.5 px-3 text-right whitespace-nowrap"><span class="inline-block px-2 py-0.5 rounded font-mono font-bold text-google-blue bg-google-subtle">${escHtml(r.usable_hosts)} hosts</span></td>
+              <td class="py-3.5 px-2 text-center whitespace-nowrap"><span class="inline-block px-1.5 py-0.5 rounded font-mono font-bold text-white bg-google-blue text-[11px]">/${escHtml(p)}</span></td>
+              <td class="py-3.5 px-3 font-mono text-gray-600 whitespace-nowrap">${escHtml(r.mask)}</td>
+              <td class="py-3.5 px-3 font-mono font-semibold text-gray-900 whitespace-nowrap">${escHtml(r.network)}</td>
+              <td class="py-3.5 px-3 font-mono text-gray-700 whitespace-nowrap">${escHtml(r.first_host)} - ${escHtml(r.last_host)}</td>
+              <td class="py-3.5 px-4 font-mono text-gray-500 whitespace-nowrap">${r.broadcast === null ? 'None' : escHtml(r.broadcast)}</td>
+            </tr>`;
+          }).join('');
+          showVlsmState('success');
+        } else {
+          const detail = (data && typeof data.detail === 'string')
+            ? data.detail
+            : 'Terjadi kesalahan pada alokasi VLSM.';
+          document.getElementById('vlsm-error-detail').textContent = detail;
+          showVlsmState('error');
+        }
+      } catch (err) {
+        document.getElementById('vlsm-error-detail').textContent = 'Gagal terhubung ke API server.';
+        showVlsmState('error');
+      }
     }
 
     function renumberVlsmRows() {
@@ -723,9 +674,10 @@
       }
     }
 
-    // Default initialization
+    // Default initialization: isi hasil Subnet dan tabel VLSM dari API
     document.addEventListener('DOMContentLoaded', () => {
       onSubnetCalculateClick();
+      onVlsmCalculateClick();
     });
   </script>
 </body></html>
