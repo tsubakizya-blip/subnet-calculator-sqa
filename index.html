@@ -159,8 +159,8 @@
 <span class="text-sm font-medium text-gray-700">Subnet Mask</span>
 </div>
 <div class="text-right">
-<div class="font-mono text-base font-semibold text-gray-900">255.255.255.0</div>
-<div class="font-mono text-xs text-gray-400">11111111.11111111.11111111.00000000</div>
+<div class="font-mono text-base font-semibold text-gray-900" id="res-mask">255.255.255.0</div>
+<div class="font-mono text-xs text-gray-400" id="res-mask-binary">11111111.11111111.11111111.00000000</div>
 </div>
 </div>
 <!-- Row 2: Network Address (Wire ID) -->
@@ -170,7 +170,7 @@
 <span class="text-sm font-medium text-gray-900">Network Address (Wire ID)</span>
 </div>
 <div class="text-right">
-<div class="font-mono text-base font-bold text-google-blue">192.168.10.0</div>
+<div class="font-mono text-base font-bold text-google-blue" id="res-network">192.168.10.0</div>
 <div class="text-xs text-gray-400">Reserved (Network identifier)</div>
 </div>
 </div>
@@ -181,8 +181,8 @@
 <span class="text-sm font-medium text-gray-700">Broadcast Address</span>
 </div>
 <div class="text-right">
-<div class="font-mono text-base font-semibold text-gray-900">192.168.10.255</div>
-<div class="text-xs text-gray-400">All host bits set to 1</div>
+<div class="font-mono text-base font-semibold text-gray-900" id="res-broadcast">192.168.10.255</div>
+<div class="text-xs text-gray-400" id="res-broadcast-note">All host bits set to 1</div>
 </div>
 </div>
 <!-- Row 4: First Usable Host -->
@@ -192,7 +192,7 @@
 <span class="text-sm font-medium text-gray-700">First Host Address</span>
 </div>
 <div class="text-right">
-<div class="font-mono text-base font-semibold text-gray-900">192.168.10.1</div>
+<div class="font-mono text-base font-semibold text-gray-900" id="res-first-host">192.168.10.1</div>
 <div class="text-xs text-gray-400">Typically assigned to default gateway</div>
 </div>
 </div>
@@ -203,7 +203,7 @@
 <span class="text-sm font-medium text-gray-700">Last Host Address</span>
 </div>
 <div class="text-right">
-<div class="font-mono text-base font-semibold text-gray-900">192.168.10.254</div>
+<div class="font-mono text-base font-semibold text-gray-900" id="res-last-host">192.168.10.254</div>
 <div class="text-xs text-gray-400">Highest usable endpoint IP</div>
 </div>
 </div>
@@ -214,10 +214,10 @@
 <span class="text-sm font-medium text-gray-700">Usable Hosts</span>
 </div>
 <div class="text-right">
-<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-google-subtle text-google-blue">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-google-subtle text-google-blue" id="res-usable-hosts">
                 254 hosts
               </span>
-<div class="font-mono text-xs text-gray-400 mt-0.5">Formula: 2^(32-24) - 2</div>
+<div class="font-mono text-xs text-gray-400 mt-0.5" id="res-usable-hosts-formula">Formula: 2^(32-24) - 2</div>
 </div>
 </div>
 </div>
@@ -242,7 +242,7 @@
 <span class="material-symbols-outlined text-[24px] text-red-500 mt-0.5">error</span>
 <div>
 <h3 class="text-sm font-bold text-red-900">Subnet Calculation Error</h3>
-<p class="text-sm text-red-700 mt-0.5">
+<p class="text-sm text-red-700 mt-0.5 font-medium" id="subnet-error-detail">
               The input parameters could not be processed into a valid IPv4 network block.
             </p>
 <ul class="mt-3 space-y-1 text-xs text-red-600">
@@ -366,7 +366,7 @@
 <span class="text-xs text-gray-400">•</span>
 <span class="text-xs font-medium text-gray-600">Optimal Non-Overlapping Allocations</span>
 </div>
-<span class="inline-flex items-center gap-1 text-xs font-semibold text-google-blue bg-blue-50 px-2.5 py-0.5 rounded-full self-start sm:self-auto font-mono">
+<span class="inline-flex items-center gap-1 text-xs font-semibold text-google-blue bg-blue-50 px-2.5 py-0.5 rounded-full self-start sm:self-auto font-mono" id="vlsm-res-base">
             Base: 192.168.1.0/24
           </span>
 </div>
@@ -384,7 +384,7 @@
 <th class="py-3 px-4 w-32">Broadcast</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-gray-100 text-xs">
+<tbody class="divide-y divide-gray-100 text-xs" id="vlsm-res-tbody">
 <!-- Subnet 1 -->
 <tr class="hover:bg-gray-50/80 transition-colors">
 <td class="py-3.5 px-4 font-semibold text-gray-900 whitespace-nowrap">
@@ -504,8 +504,8 @@
 <div class="flex items-start gap-3 text-red-700">
 <span class="material-symbols-outlined text-[24px] text-red-500 mt-0.5">error</span>
 <div>
-<h3 class="text-sm font-bold text-red-900">Address Space Exhausted</h3>
-<p class="text-sm text-red-700 mt-0.5">
+<h3 class="text-sm font-bold text-red-900">VLSM Allocation Error</h3>
+<p class="text-sm text-red-700 mt-0.5 font-medium" id="vlsm-error-detail">
               Total requested host capacity (340) exceeds available /24 address space (254 usable hosts).
             </p>
 <p class="text-xs text-red-600 mt-2">
@@ -541,10 +541,8 @@
       }
     }
 
-    function setViewMode(state) {
+    function updateStateDemoButtons(state) {
       currentState = state;
-
-      // Update state demo button indicators
       const btnSuccess = document.getElementById('btn-state-success');
       const btnEmpty = document.getElementById('btn-state-empty');
       const btnError = document.getElementById('btn-state-error');
@@ -560,86 +558,117 @@
       } else if (state === 'error') {
         btnError.className = 'px-3 py-1 rounded-full font-medium transition-all bg-red-600 text-white shadow-sm';
       }
+    }
 
-      // Subnet Views
+    function showSubnetState(state) {
       const sSuccess = document.getElementById('subnet-view-success');
       const sEmpty = document.getElementById('subnet-view-empty');
       const sError = document.getElementById('subnet-view-error');
-      const sIpErr = document.getElementById('subnet-ip-error');
-      const sCidrErr = document.getElementById('subnet-cidr-error');
-      const sIpInput = document.getElementById('subnet-ip');
-      const sPrefixInput = document.getElementById('subnet-prefix');
 
       sSuccess.classList.toggle('hidden', state !== 'success');
       sEmpty.classList.toggle('hidden', state !== 'empty');
       sError.classList.toggle('hidden', state !== 'error');
+      updateStateDemoButtons(state);
+    }
 
-      // VLSM Views
+    function showVlsmState(state) {
       const vSuccess = document.getElementById('vlsm-view-success');
       const vEmpty = document.getElementById('vlsm-view-empty');
       const vError = document.getElementById('vlsm-view-error');
-      const vCidrInput = document.getElementById('vlsm-cidr');
 
       vSuccess.classList.toggle('hidden', state !== 'success');
       vEmpty.classList.toggle('hidden', state !== 'empty');
       vError.classList.toggle('hidden', state !== 'error');
+      updateStateDemoButtons(state);
+    }
 
+    function setViewMode(state) {
       if (state === 'error') {
-        sIpInput.value = '300.168.10.999';
-        sPrefixInput.value = '35';
-        sIpErr.classList.remove('hidden');
-        sCidrErr.classList.remove('hidden');
-        vCidrInput.value = '192.168.1.0/24';
+        if (currentTab === 'subnet') {
+          document.getElementById('subnet-ip').value = '300.168.10.999';
+          document.getElementById('subnet-prefix').value = '35';
+          onSubnetCalculateClick();
+        } else {
+          document.getElementById('vlsm-cidr').value = '192.168.1.5/24';
+          // Tab VLSM hanya tampilan — tidak ada logika error.
+        }
       } else if (state === 'empty') {
-        sIpInput.value = '';
-        sPrefixInput.value = '';
-        sIpErr.classList.add('hidden');
-        sCidrErr.classList.add('hidden');
+        if (currentTab === 'subnet') {
+          document.getElementById('subnet-ip').value = '';
+          document.getElementById('subnet-prefix').value = '';
+          showSubnetState('empty');
+        } else {
+          document.getElementById('vlsm-cidr').value = '';
+          showVlsmState('empty');
+        }
       } else {
-        sIpInput.value = '192.168.10.45';
-        sPrefixInput.value = '24';
-        sIpErr.classList.add('hidden');
-        sCidrErr.classList.add('hidden');
-        vCidrInput.value = '192.168.1.0/24';
+        if (currentTab === 'subnet') {
+          document.getElementById('subnet-ip').value = '192.168.10.45';
+          document.getElementById('subnet-prefix').value = '24';
+          onSubnetCalculateClick();
+        } else {
+          document.getElementById('vlsm-cidr').value = '192.168.1.0/24';
+          // Tab VLSM hanya tampilan — tidak ada logika success.
+        }
       }
     }
 
     function applySubnetPreset(ip, prefix) {
       document.getElementById('subnet-ip').value = ip;
       document.getElementById('subnet-prefix').value = prefix;
-      setViewMode('success');
+      onSubnetCalculateClick();
     }
 
-    function onSubnetCalculateClick() {
+    async function onSubnetCalculateClick() {
       const ip = document.getElementById('subnet-ip').value.trim();
-      const prefix = parseInt(document.getElementById('subnet-prefix').value, 10);
+      const prefix = document.getElementById('subnet-prefix').value.trim();
 
-      if (!ip || isNaN(prefix)) {
-        setViewMode('empty');
+      if (!ip && !prefix) {
+        showSubnetState('empty');
         return;
       }
 
-      const octets = ip.split('.');
-      const isValid = octets.length === 4 && octets.every(o => {
-        const n = parseInt(o, 10);
-        return !isNaN(n) && n >= 0 && n <= 255 && String(n) === o;
-      }) && prefix >= 0 && prefix <= 32;
+      try {
+        const response = await fetch(`/api/subnet?ip=${encodeURIComponent(ip)}&prefix=${encodeURIComponent(prefix)}`);
+        const data = await response.json();
 
-      if (isValid) {
-        document.getElementById('display-queried-ip').textContent = `${ip} / ${prefix}`;
-        setViewMode('success');
-      } else {
-        setViewMode('error');
+        if (response.ok) {
+          document.getElementById('display-queried-ip').textContent = `${ip} / ${prefix}`;
+          document.getElementById('res-mask').textContent = data.mask;
+          document.getElementById('res-mask-binary').textContent = data.mask
+            .split('.')
+            .map(o => parseInt(o, 10).toString(2).padStart(8, '0'))
+            .join('.');
+          document.getElementById('res-network').textContent = data.network;
+          document.getElementById('res-broadcast').textContent = data.broadcast !== null ? data.broadcast : 'None';
+          document.getElementById('res-broadcast-note').textContent = data.broadcast !== null ? 'All host bits set to 1' : 'None (RFC 3021 / Host Route)';
+          document.getElementById('res-first-host').textContent = data.first_host;
+          document.getElementById('res-last-host').textContent = data.last_host;
+          document.getElementById('res-usable-hosts').textContent = `${data.usable_hosts} hosts`;
+
+          const p = parseInt(prefix, 10);
+          let formula = `Formula: 2^(32-${p}) - 2`;
+          if (p === 31) {
+            formula = 'RFC 3021 Point-to-Point (2 host usable)';
+          } else if (p === 32) {
+            formula = 'Host Route (1 host usable)';
+          }
+          document.getElementById('res-usable-hosts-formula').textContent = formula;
+
+          showSubnetState('success');
+        } else {
+          const detail = data.detail || 'Terjadi kesalahan pada perhitungan subnet.';
+          document.getElementById('subnet-error-detail').textContent = detail;
+          showSubnetState('error');
+        }
+      } catch (err) {
+        document.getElementById('subnet-error-detail').textContent = 'Gagal terhubung ke API server.';
+        showSubnetState('error');
       }
     }
 
     function onVlsmCalculateClick() {
-      const cidr = document.getElementById('vlsm-cidr').value.trim();
-      if (!cidr) {
-        setViewMode('empty');
-        return;
-      }
-      setViewMode('success');
+      // Tab VLSM hanya tampilan — tidak terhubung ke API.
     }
 
     function renumberVlsmRows() {
@@ -696,7 +725,7 @@
 
     // Default initialization
     document.addEventListener('DOMContentLoaded', () => {
-      setViewMode('success');
+      onSubnetCalculateClick();
     });
   </script>
 </body></html>
