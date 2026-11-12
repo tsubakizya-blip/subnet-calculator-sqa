@@ -4,6 +4,7 @@ from typing import Any
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import HTMLResponse, JSONResponse
+from pydantic import BaseModel
 
 app = FastAPI(title="Subnet Calculator")
 
@@ -102,6 +103,10 @@ def hitung_subnet(ip: str, prefix: int) -> dict[str, Any]:
     }
 
 
+def alokasi_vlsm(network_cidr: str, kebutuhan_host: list[int]) -> list[dict]:
+    raise NotImplementedError("alokasi_vlsm belum diimplementasikan")
+
+
 # ---------------------------------------------------------------------------
 # Exception Handlers: Override 422 ke 400 Bad Request
 # ---------------------------------------------------------------------------
@@ -168,3 +173,13 @@ def api_subnet(request: Request):
         return hitung_subnet(ip, prefix)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+class VlsmRequest(BaseModel):
+    network: str
+    kebutuhan_host: list[int]
+
+
+@app.post("/api/vlsm")
+def api_vlsm(body: VlsmRequest):
+    raise NotImplementedError("api_vlsm belum diimplementasikan")
