@@ -1,0 +1,7 @@
+﻿services:
+  subnet-app:
+    container_name: subnet-app
+    build: .
+    image: subnet-calculator:latest
+    ports:
+      - "8000:8000"
